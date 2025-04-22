@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { X, ExternalLink, MapPin, Clock, Phone, Globe, WheelchairRamp, Ear } from 'lucide-react';
+import { X, ExternalLink, MapPin, Clock, Phone, Globe, Accessibility, Ear } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { PointOfInterest } from '@/data/pointsOfInterest';
@@ -11,7 +10,7 @@ interface InfoPanelProps {
   onClose: () => void;
 }
 
-export function InfoPanel({ poi, onClose }: InfoPanelProps) {
+const InfoPanel = ({ poi, onClose }: InfoPanelProps) => {
   return (
     <div className="glass-morphism rounded-lg shadow-lg overflow-hidden animate-fade-in">
       {/* Header with image if available */}
@@ -158,7 +157,7 @@ export function InfoPanel({ poi, onClose }: InfoPanelProps) {
             <h3 className="text-sm font-medium mb-2">Accessibility</h3>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div className={`flex items-center ${poi.accessibility.wheelchair ? 'text-green-600' : 'text-red-600'}`}>
-                <WheelchairRamp className="h-4 w-4 mr-1" />
+                <Accessibility className="h-4 w-4 mr-1" />
                 {poi.accessibility.wheelchair ? 'Wheelchair access' : 'No wheelchair access'}
               </div>
               
@@ -188,4 +187,6 @@ export function InfoPanel({ poi, onClose }: InfoPanelProps) {
       </div>
     </div>
   );
-}
+};
+
+export default InfoPanel;
