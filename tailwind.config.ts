@@ -61,6 +61,11 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				amsterdam: {
+					red: '#EC0000',
+					blue: '#0063AF',
+					'light-blue': '#009DE6'
 				}
 			},
 			borderRadius: {
