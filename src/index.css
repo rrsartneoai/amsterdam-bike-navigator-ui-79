@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 210 80% 34%; /* Amsterdam Blue */
+    --primary: 209 100% 29%; /* Amsterdam Blue */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -36,15 +36,6 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 210 80% 34%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
@@ -57,7 +48,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -75,28 +66,48 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .glass-morphism {
-    backdrop-filter: blur(22px) saturate(160%);
-    -webkit-backdrop-filter: blur(22px) saturate(160%);
-    background: rgba(255,255,255,0.72);
-    border-radius: 18px;
-    border: 1.5px solid rgba(255,255,255,0.16);
-    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.19);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
   }
+
   .dark .glass-morphism {
-    background: rgba(0,0,0,0.34);
-    border: 1.5px solid rgba(255,255,255,0.08);
-    box-shadow: 0 8px 32px 0 rgba(10,18,45,0.19);
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .map-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .maplibregl-ctrl-attrib-inner {
+    @apply text-xs opacity-60;
+  }
+
+  .maplibregl-popup {
+    max-width: 300px !important;
+  }
+
+  .maplibregl-popup-content {
+    @apply glass-morphism p-0 rounded-xl shadow-lg border-0 overflow-hidden;
+  }
+
+  .maplibregl-popup-close-button {
+    @apply text-xl p-1 text-gray-600 dark:text-gray-300 z-10;
+  }
+
+  .maplibregl-ctrl-group {
+    @apply glass-morphism overflow-hidden;
+  }
+
+  .maplibregl-ctrl button {
+    @apply text-gray-600 dark:text-gray-200;
   }
 }
 
@@ -107,33 +118,30 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
-}
 
-@layer utilities {
-  .animate-fade-in {
-    @apply animate-[fade-in_0.44s_ease];
+  .marker {
+    @apply w-7 h-7 rounded-full flex items-center justify-center cursor-pointer transition-all duration-150 bg-white shadow-md border border-gray-200 hover:scale-110;
   }
-  .animate-slide-in-right {
-    @apply animate-[slide-in-right_0.44s_ease];
+
+  .marker-transport {
+    @apply bg-amsterdam-blue text-white;
   }
-  .neo-blur {
-    backdrop-filter: blur(18px) saturate(180%);
-    -webkit-backdrop-filter: blur(18px) saturate(180%);
-    background: rgba(255,255,255,0.32);
-    border: 1.5px solid rgba(255,255,255,0.18);
+
+  .marker-cycling {
+    @apply bg-amsterdam-green text-white;
   }
+
+  .marker-attraction {
+    @apply bg-amsterdam-red text-white;
+  }
+
+  .marker-dining {
+    @apply bg-amsterdam-yellow text-black;
+  }
+
   .pulse {
-    animation: pulse 0.8s cubic-bezier(0.4,0,0.6,1);
-  }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1);}
-    50% { transform: scale(1.06);}
+    @apply before:absolute before:inset-0 before:rounded-full before:animate-ping before:bg-current before:opacity-30;
   }
 }
-
-/* Poprawka cienia dla kart i buttonów onHover */
-.shadow-md, .shadow-lg {
-  transition: box-shadow 0.33s cubic-bezier(.4,0,.2,1), transform 0.18s cubic-bezier(.4,0,.2,1);
-}
-
