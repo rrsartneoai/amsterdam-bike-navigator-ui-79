@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Layers, ChevronLeft, ChevronRight, Bus, Bike, MapPin, Ferris, Wheelchair } from 'lucide-react';
+import { Layers, ChevronLeft, ChevronRight, Bus, Bike, MapPin, FerrisWheel, Accessibility } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ActiveLayer } from './InteractiveMap';
 import { cn } from '@/lib/utils';
@@ -20,9 +20,9 @@ export function LayerControl({ layers, onToggleLayer }: LayerControlProps) {
       case 'cycling':
         return <Bike className="h-4 w-4" />;
       case 'water':
-        return <Ferris className="h-4 w-4" />;
+        return <FerrisWheel className="h-4 w-4" />;
       case 'accessibility':
-        return <Wheelchair className="h-4 w-4" />;
+        return <Accessibility className="h-4 w-4" />;
       default:
         return <MapPin className="h-4 w-4" />;
     }
