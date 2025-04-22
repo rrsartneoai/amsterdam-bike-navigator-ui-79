@@ -18,8 +18,8 @@ export function FilterPanel() {
   const [priceRange, setPriceRange] = useState([0, 20]);
 
   return (
-    <div className="bg-sidebar p-4">
-      <div 
+    <div className="bg-white/70 dark:bg-black/25 glass-morphism p-4 rounded-xl transition-all mb-4 shadow-md">
+      <div
         className="flex items-center justify-between cursor-pointer"
         onClick={() => setExpanded(!expanded)}
       >
@@ -37,17 +37,17 @@ export function FilterPanel() {
       </div>
 
       {expanded && (
-        <div className="mt-4 space-y-4">
+        <div className="mt-4 space-y-4 animate-fade-in">
           {/* Bike Type */}
           <div>
             <label className="text-sm font-medium mb-1.5 block">
               Bike Type
             </label>
             <Select defaultValue="any">
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full glass-morphism bg-white/60 dark:bg-black/40 z-30">
                 <SelectValue placeholder="Select bike type" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="glass-morphism bg-white/90 dark:bg-black/80 z-50 border border-gray-200 dark:border-gray-600">
                 <SelectItem value="any">Any Bike</SelectItem>
                 <SelectItem value="city">City Bike</SelectItem>
                 <SelectItem value="electric">Electric Bike</SelectItem>
@@ -63,10 +63,10 @@ export function FilterPanel() {
               Operator
             </label>
             <Select defaultValue="any">
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full glass-morphism bg-white/60 dark:bg-black/40 z-30">
                 <SelectValue placeholder="Select operator" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="glass-morphism bg-white/90 dark:bg-black/80 z-50 border border-gray-200 dark:border-gray-600">
                 <SelectItem value="any">Any Operator</SelectItem>
                 <SelectItem value="swapfiets">Swapfiets</SelectItem>
                 <SelectItem value="ov-fiets">OV-fiets</SelectItem>
@@ -101,8 +101,8 @@ export function FilterPanel() {
             <div className="space-y-2 mt-2">
               <div className="flex items-center space-x-2">
                 <Checkbox id="helmet" />
-                <label 
-                  htmlFor="helmet" 
+                <label
+                  htmlFor="helmet"
                   className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   Helmets available
@@ -110,8 +110,8 @@ export function FilterPanel() {
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox id="child-seat" />
-                <label 
-                  htmlFor="child-seat" 
+                <label
+                  htmlFor="child-seat"
                   className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   Child seat available
@@ -119,8 +119,8 @@ export function FilterPanel() {
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox id="repair" />
-                <label 
-                  htmlFor="repair" 
+                <label
+                  htmlFor="repair"
                   className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   Repair service
@@ -128,8 +128,8 @@ export function FilterPanel() {
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox id="electric-charging" />
-                <label 
-                  htmlFor="electric-charging" 
+                <label
+                  htmlFor="electric-charging"
                   className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   Electric charging
@@ -139,9 +139,12 @@ export function FilterPanel() {
           </div>
 
           {/* Apply Filters Button */}
-          <Button className="w-full mt-2">Apply Filters</Button>
+          <Button className="w-full mt-2 shadow-md transition transform hover:scale-105 active:animate-pulse">
+            Apply Filters
+          </Button>
         </div>
       )}
     </div>
   );
 }
+

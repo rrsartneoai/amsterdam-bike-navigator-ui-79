@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -83,6 +84,20 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  .glass-morphism {
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    background: rgba(255,255,255,0.72);
+    border-radius: 18px;
+    border: 1.5px solid rgba(255,255,255,0.16);
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.19);
+  }
+  .dark .glass-morphism {
+    background: rgba(0,0,0,0.34);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 32px 0 rgba(10,18,45,0.19);
+  }
 }
 
 @layer base {
@@ -94,3 +109,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .animate-fade-in {
+    @apply animate-[fade-in_0.44s_ease];
+  }
+  .animate-slide-in-right {
+    @apply animate-[slide-in-right_0.44s_ease];
+  }
+  .neo-blur {
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    background: rgba(255,255,255,0.32);
+    border: 1.5px solid rgba(255,255,255,0.18);
+  }
+  .pulse {
+    animation: pulse 0.8s cubic-bezier(0.4,0,0.6,1);
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1);}
+    50% { transform: scale(1.06);}
+  }
+}
+
+/* Poprawka cienia dla kart i buttonów onHover */
+.shadow-md, .shadow-lg {
+  transition: box-shadow 0.33s cubic-bezier(.4,0,.2,1), transform 0.18s cubic-bezier(.4,0,.2,1);
+}
+
