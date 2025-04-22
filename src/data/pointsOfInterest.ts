@@ -171,7 +171,7 @@ export const pointsOfInterest: PointOfInterest[] = [
   },
   {
     id: 'brouwerij-t-ij',
-    name: 'Brouwerij 't IJ',
+    name: 'Brouwerij \'t IJ',
     type: 'dining',
     category: 'Brewery',
     coordinates: [4.9233, 52.3668],
