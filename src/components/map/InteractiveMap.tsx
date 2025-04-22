@@ -6,7 +6,7 @@ import { PointOfInterest, pointsOfInterest } from '@/data/pointsOfInterest';
 import { POIPopup } from './POIPopup';
 import { SearchBar } from './SearchBar';
 import { LayerControl } from './LayerControl';
-import { InfoPanel } from './InfoPanel';
+import InfoPanel from './InfoPanel';  // Changed from { InfoPanel } to default import
 import { useToast } from '@/components/ui/use-toast';
 
 export interface ActiveLayer {
