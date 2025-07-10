@@ -3,7 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'maplibre-gl/dist/maplibre-gl.css';
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
 
 @layer base {
   :root {
@@ -16,7 +18,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 209 100% 29%; /* Amsterdam Blue */
+    --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -25,8 +27,8 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 0 100% 46%; /* Amsterdam Red */
-    --accent-foreground: 0 0% 100%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -36,6 +38,21 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Glassmorphism variables */
+    --glass-bg: 255 255 255 / 0.05;
+    --glass-border: 255 255 255 / 0.1;
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --glass-backdrop: blur(8px);
   }
 
   .dark {
@@ -48,7 +65,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217.2 91.2% 59.8%;
+    --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -66,48 +83,19 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-  }
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
 
-  .glass-morphism {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
-  }
-
-  .dark .glass-morphism {
-    background-color: rgba(30, 30, 30, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .map-container {
-    width: 100%;
-    height: 100%;
-  }
-
-  .maplibregl-ctrl-attrib-inner {
-    @apply text-xs opacity-60;
-  }
-
-  .maplibregl-popup {
-    max-width: 300px !important;
-  }
-
-  .maplibregl-popup-content {
-    @apply glass-morphism p-0 rounded-xl shadow-lg border-0 overflow-hidden;
-  }
-
-  .maplibregl-popup-close-button {
-    @apply text-xl p-1 text-gray-600 dark:text-gray-300 z-10;
-  }
-
-  .maplibregl-ctrl-group {
-    @apply glass-morphism overflow-hidden;
-  }
-
-  .maplibregl-ctrl button {
-    @apply text-gray-600 dark:text-gray-200;
+    /* Dark mode glassmorphism */
+    --glass-bg: 15 23 42 / 0.1;
+    --glass-border: 255 255 255 / 0.05;
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
 }
 
@@ -118,30 +106,89 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    background: var(--gradient-hero, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+    min-height: 100vh;
+    font-family: var(--font-body, "Inter", "Segoe UI", sans-serif);
   }
 
-  .marker {
-    @apply w-7 h-7 rounded-full flex items-center justify-center cursor-pointer transition-all duration-150 bg-white shadow-md border border-gray-200 hover:scale-110;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading, "Inter", "Segoe UI", sans-serif);
+  }
+}
+
+@layer components {
+  /* Glassmorphism effects */
+  .glass {
+    background: rgba(var(--glass-bg));
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid rgba(var(--glass-border));
+    box-shadow: var(--glass-shadow);
   }
 
-  .marker-transport {
-    @apply bg-amsterdam-blue text-white;
+  .glass-card {
+    @apply glass rounded-2xl p-6;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .marker-cycling {
-    @apply bg-amsterdam-green text-white;
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
   }
 
-  .marker-attraction {
-    @apply bg-amsterdam-red text-white;
+  /* 3D effects */
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
   }
 
-  .marker-dining {
-    @apply bg-amsterdam-yellow text-black;
+  .card-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg);
   }
 
-  .pulse {
-    @apply before:absolute before:inset-0 before:rounded-full before:animate-ping before:bg-current before:opacity-30;
+  /* Animated gradient backgrounds */
+  .gradient-bg {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Floating animations */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  /* Glow effects */
+  .glow {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+
+  .glow-hover:hover {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.8);
+    transition: box-shadow 0.3s ease;
   }
 }
