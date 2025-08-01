@@ -6,7 +6,11 @@ import { componentTagger } from "lovable-tagger"
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
-    port: 8080,
+    port: 8081,
+    allowedHosts: [
+      "8081-rrsartneoai-amsterdambi-54r7s798nyk.ws-eu120.gitpod.io",
+      "8080-rrsartneoai-amsterdambi-54r7s798nyk.ws-eu120.gitpod.io",
+    ],
   },
   plugins: [
     react(),

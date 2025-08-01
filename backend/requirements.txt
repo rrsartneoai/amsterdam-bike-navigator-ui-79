@@ -1,0 +1,16 @@
+Flask>=2.3
+SQLAlchemy
+Flask-SQLAlchemy
+psycopg2-binary
+PyJWT
+Flask-RESTX
+boto3
+stripe
+pytest
+factory_boy
+pydantic
+python-dotenv
+Werkzeug
+python-decouple
+alembic
+Flask-Migrate
